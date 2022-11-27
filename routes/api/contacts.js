@@ -1,6 +1,9 @@
 import { Router } from 'express'
 
-import { listContacts, getContactById, addContact, removeContact, updateContact }   from '../../models/contacts.js'
+import { listContacts, getContactById, addContact, removeContact, updateContact } from '../../models/contacts.js'
+
+import { validation } from '../../middelwares/index.js'
+import { contactSchema } from '../../schemas/index.js'
 
 const router = Router()
 
@@ -9,7 +12,7 @@ router
   // res.json({ message: 'template message' })
   res.json(await listContacts())
 })
-.post('/', async (req, res, next) => {
+.post('/', validation(contactSchema), async (req, res, next) => {
   // res.json({ message: 'template message' })
   const contact = await addContact(req.body);
   if (contact) return res.status(201).json(contact)
@@ -30,7 +33,7 @@ router
   if (await removeContact(contactId)) return res.json({ message : "contact deleted"})
   next()
 })
-.put('/:contactId', async (req, res, next) => {
+.put('/:contactId', validation(contactSchema), async (req, res, next) => {
   // res.json({ message: 'template message' })
   const { contactId } = req.params
   if (! Object.keys(req.body).length) return res.status(400).json({message : "missing fields"})
