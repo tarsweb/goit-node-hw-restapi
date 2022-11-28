@@ -28,15 +28,13 @@ const listContacts = async () => {
 }
 
 const getContactById = async (contactId) => {
-  console.log("contactId", contactId);
   try {
     const allContacts = await listContacts();
     // if id is unic can use find
     const contact = allContacts.find(({id}) => id === contactId)
     if (!contact ) return null
     else {
-      const {id, ...allDataContact} = contact;
-      return {...allDataContact}
+      return contact
     }
   } catch (error) {
     console.error(error);
@@ -46,16 +44,15 @@ const getContactById = async (contactId) => {
 
 const removeContact = async (contactId) => {
   try {
-    // const allContacts = await listContacts();
     const contact  = await getContactById(contactId)
-    if (!contact) return false
+    if (!contact) return null
     const allContacts = await listContacts();
     const updateContacts =  allContacts.filter(({id}) => id !== contactId);
     // write data
-    return await writeData(updateContacts)
+    return await writeData(updateContacts) ? contact : null
   } catch (error) {
     console.error(error);
-    return false
+    return null
   }
 }
 
