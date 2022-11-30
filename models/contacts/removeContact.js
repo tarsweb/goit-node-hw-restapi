@@ -1,6 +1,6 @@
-import { listContacts } from "./listContacts.js";
-import { getContactById } from "./getContactById.js";
-import { writeData } from "./writeData.js";
+const listContacts = require('./listContacts');
+const getContactById = require('./getContactById');
+const writeData = require('./writeData');
 
 const removeContact = async (contactId) => {
   try {
@@ -16,4 +16,4 @@ const removeContact = async (contactId) => {
   }
 };
 
-export { removeContact }
+module.exports = removeContact

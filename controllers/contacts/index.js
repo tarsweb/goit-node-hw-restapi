@@ -1,11 +1,10 @@
-import { getAll } from './getAll.js'
-import { add } from './add.js'
-import { getById } from './getById.js'
-import { updateById } from './updateById.js'
-import { removeById } from './removeById.js'
+const getAll = require('./getAll')
+const add = require('./add')
+const getById = require('./getById')
+const updateById = require('./updateById')
+const removeById = require('./removeById')
 
-
-export {
+module.exports = {
     getAll,
     add,
     getById, 

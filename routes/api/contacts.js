@@ -1,11 +1,11 @@
-import { Router } from 'express'
+const { Router} = require('express')
 
-import { contacts as  ctrl } from '../../controllers/index.js'
+const { contacts : ctrl } = require('../../controllers')
 
-import { validation, ctrlWrapper } from '../../middelwares/index.js'
-import { contactSchema, contactSchemaPostMessage, contactSchemaPutMessage } from '../../schemas/index.js'
+const { validation, ctrlWrapper } = require('../../middelwares')
+const { contactSchema, contactSchemaPostMessage, contactSchemaPutMessage } = require('../../schemas');
 
-const router = Router()
+const router = Router();
 
 router
 .get('/', ctrlWrapper(ctrl.getAll))
@@ -13,7 +13,7 @@ router
 
 router
 .get('/:contactId', ctrlWrapper(ctrl.getById))
-.put('/:contactId', validation(contactSchema, contactSchemaPutMessage), ctrlWrapper(ctrl.updateById))
+.put('/:contactId', ctrlWrapper(ctrl.updateById))
 .delete('/:contactId', ctrlWrapper(ctrl.removeById))
 
-export default router
+module.exports = router;

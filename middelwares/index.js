@@ -1,2 +1,4 @@
-export * from './ctrlWrapper.js'
-export * from './validation.js'
+const ctrlWrapper = require('./ctrlWrapper')
+const validation = require('./validation')
+
+module.exports = { ctrlWrapper, validation }

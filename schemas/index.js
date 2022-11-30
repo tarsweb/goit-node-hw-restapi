@@ -1,1 +1,7 @@
-export * from './contactsShema.js'
+const { contactSchema, contactSchemaPostMessage, contactSchemaPutMessage } = require("./contactsShema");
+
+module.exports = {
+  contactSchema,
+  contactSchemaPostMessage,
+  contactSchemaPutMessage,
+}

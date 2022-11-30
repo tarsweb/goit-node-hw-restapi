@@ -1,5 +1,5 @@
 // import { updateContact } from "../../models/contacts.js";
-import { updateContact } from "../../models/contacts/index.js";
+const { updateContact } = require("../../models/contacts");
 
 const updateById = async (req, res, next) => {
   const { contactId } = req.params;
@@ -9,4 +9,4 @@ const updateById = async (req, res, next) => {
   next();
 };
 
-export { updateById }
+module.exports = updateById

@@ -1,5 +1,5 @@
-// import { addContact } from '../../models/contacts.js'
-import { addContact } from '../../models/contacts/index.js'
+
+const { addContact } = require('../../models/contacts')
 
 const add = async (req, res, next) => {
   const contact = await addContact(req.body);
@@ -8,4 +8,4 @@ const add = async (req, res, next) => {
   next();
 };
 
-export { add }
+module.exports = add

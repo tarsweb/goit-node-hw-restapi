@@ -1,13 +1,13 @@
-import { listContacts } from "./listContacts.js"
-import { getContactById } from "./getContactById.js"
-import { addContact } from "./addContact.js"
-import { updateContact } from "./updateContact.js"
-import { removeContact } from "./removeContact.js"
+const listContacts  = require("./listContacts");
+const getContactById  = require("./getContactById");
+const addContact  = require("./addContact");
+const updateContact  = require("./updateContact");
+const removeContact  = require("./removeContact");
 
-export {
-    listContacts,
-    getContactById,
-    addContact,
-    removeContact,
-    updateContact,
-  }
+module.exports = {
+  listContacts,
+  getContactById,
+  addContact,
+  removeContact,
+  updateContact,
+};

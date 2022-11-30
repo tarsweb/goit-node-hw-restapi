@@ -1,5 +1,4 @@
-// import { removeContact } from '../../models/contacts.js'
-import { removeContact } from '../../models/contacts/index.js'
+const { removeContact } =require('../../models/contacts');
 
 const removeById =  async (req, res, next) => {
   const { contactId } = req.params
@@ -7,4 +6,4 @@ const removeById =  async (req, res, next) => {
   next()
 }
 
-export { removeById }
+module.exports = removeById

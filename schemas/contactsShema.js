@@ -1,5 +1,4 @@
-import Joi from "joi";
-
+const Joi = require('joi');
 
 const contactSchemaPostMessage = { messages: {'any.required': "missing required field"} };
 const contactSchemaPutMessage = { messages: {'any.required': "missing fields"} };
@@ -10,4 +9,4 @@ const contactSchema = Joi.object({
     phone: Joi.string().length(14).required()
 }).required();
 
-export { contactSchema, contactSchemaPostMessage, contactSchemaPutMessage }
+module.exports = { contactSchema, contactSchemaPostMessage, contactSchemaPutMessage }

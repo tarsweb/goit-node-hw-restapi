@@ -1,1 +1,3 @@
-export * as contacts from './contacts/index.js'
+const contacts = require('./contacts')
+
+module.exports =  {contacts}

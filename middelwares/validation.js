@@ -9,4 +9,4 @@ const validation = (schema, options = {}) => {
   };
 };
 
-export { validation };
+module.exports = validation;

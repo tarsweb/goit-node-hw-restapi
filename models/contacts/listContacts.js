@@ -1,10 +1,10 @@
-import { readFile } from 'fs/promises';
-import path  from 'path';
+const { readFile } = require('fs/promises');
+const path = require('path');
 
-import * as dotenv from 'dotenv'
-dotenv.config()
+require("dotenv").config();
 
 const contactsPath = path.resolve(process.env.DATA_LOCAL_FILE);
+console.log(contactsPath);
 
 const listContacts = async () => {
   try {
@@ -16,4 +16,4 @@ const listContacts = async () => {
   }
 };
 
-export { listContacts }
+module.exports = listContacts;

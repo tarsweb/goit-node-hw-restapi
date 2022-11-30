@@ -1,5 +1,5 @@
-import { listContacts } from "./listContacts.js";
-import { writeData } from "./writeData.js";
+const listContacts = require('./listContacts');
+const writeData = require('./writeData');
 
 const addContact = async (body) => {
   try {
@@ -16,4 +16,4 @@ const addContact = async (body) => {
   }
 };
 
-export { addContact }
+module.exports = addContact
