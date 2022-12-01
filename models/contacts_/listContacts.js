@@ -4,7 +4,6 @@ const path = require('path');
 require("dotenv").config();
 
 const contactsPath = path.resolve(process.env.DATA_LOCAL_FILE);
-console.log(contactsPath);
 
 const listContacts = async () => {
   try {
