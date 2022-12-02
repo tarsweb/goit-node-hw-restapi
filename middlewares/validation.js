@@ -1,9 +1,10 @@
+const { requestError } = require('../helpers');
+
 const validation = (schema, options = {}) => {
-  return (req, res, next) => {
+  return (req, _, next) => {
     const { error } = schema.validate(req.body, {...schema.options, ...options});
     if (error) {
-      error.status = 400;
-      next(error);
+      next(requestError(400, error.message));
     }
     next();
   };

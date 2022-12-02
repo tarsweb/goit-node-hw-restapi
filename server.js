@@ -7,8 +7,6 @@ const {PORT = 3000, DB_HOST} = process.env;
 
 mongoose.Promise = global.Promise;
 
-console.log("PORT: ",PORT, "\nDB_HOST :", DB_HOST);
-
 mongoose.connect(DB_HOST, { autoIndex: true,})
   .then(()=> {
     console.log("Database connection successful");
