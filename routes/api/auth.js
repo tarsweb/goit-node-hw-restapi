@@ -10,6 +10,9 @@ const router = Router();
 
 router
   .post("/signup", validation(schemas.registerSchema, customMessages.userMessage), ctrlWrapper(ctrl.register))
+  .post("/register", validation(schemas.registerSchema, customMessages.userMessage), ctrlWrapper(ctrl.register))
+
   .post("/login", validation(schemas.loginSchema, customMessages.userMessage), ctrlWrapper(ctrl.login))
+  
 
 module.exports = router;

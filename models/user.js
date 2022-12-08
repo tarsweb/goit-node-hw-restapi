@@ -1,7 +1,10 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
 const Joi = require("joi");
 
 const bcrypt = require('bcryptjs');
+const jwt = require("jsonwebtoken");
+
+const { SECRET_KEY } = process.env
 
 const { handleValidationErrors } = require('../helpers')
 
@@ -44,6 +47,21 @@ userSchema.methods.setPassword = function (password) {
 userSchema.methods.isValidPassword = function (password) {
   return bcrypt.compareSync(password, this.password)
 }
+
+userSchema.methods.getToken = function () {
+  const payload = {id: this._id}
+  const token =  jwt.sign(payload, SECRET_KEY)
+  this.token = token;
+  this.save();
+  return token;
+}
+
+// userSchema.methods.verifyToken = function (token) {
+//   const {id} = jwt.verify(token, SECRET_KEY)
+//   const user = mongoose.model("user").findOne({token})
+//   return user
+// }
+
 
 userSchema.post("save", handleValidationErrors)
 
