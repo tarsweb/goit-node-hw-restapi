@@ -5,7 +5,8 @@ const { requestError } = require('../../helpers');
 const register = async (req, res) => {
   const {email, password, subscription} = req.body;
   const user = await User.findOne({email})
-  if (user) throw requestError(409, "Email in use")
+  if (user) 
+    throw requestError(409, "Email in use")
 //   if (User.userExsist) throw requestError(409, "Email in use")
 
   const newUser = new User({email, subscription});
