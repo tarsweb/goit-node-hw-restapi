@@ -14,6 +14,9 @@ router
 
   .post("/login", validation(schemas.loginSchema, customMessages.userMessage), ctrlWrapper(ctrl.login))
   
-  .get("/logout", authenticate, ctrlWrapper(ctrl.logout));
+  .get("/logout", authenticate, ctrlWrapper(ctrl.logout))
+  .get("/current", authenticate, ctrlWrapper(ctrl.current))
+
+  // .post("/subscription", authenticate, )
 
 module.exports = router;
