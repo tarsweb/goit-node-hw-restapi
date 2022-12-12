@@ -3,7 +3,7 @@ const { Router } = require('express')
 const { auth : ctrl} = require('../../controllers')
 
 const { ctrlWrapper } = require('../../helpers')
-const { validation } = require('../../middlewares')
+const { validation, authenticate } = require('../../middlewares')
 const { schemas, customMessages } = require('../../models/user')
 
 const router = Router();
@@ -14,5 +14,6 @@ router
 
   .post("/login", validation(schemas.loginSchema, customMessages.userMessage), ctrlWrapper(ctrl.login))
   
+  .get("/logout", authenticate, ctrlWrapper(ctrl.logout));
 
 module.exports = router;

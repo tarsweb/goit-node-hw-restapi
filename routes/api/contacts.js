@@ -10,11 +10,11 @@ const router = Router();
 
 router
   .get('/', authenticate, ctrlWrapper(ctrl.getAll))
-  .post('/', validation(schemas.addSchema, customMessages.post), ctrlWrapper(ctrl.add))
+  .post('/', authenticate, validation(schemas.addSchema, customMessages.post), ctrlWrapper(ctrl.add))
 
   .get('/:contactId', authenticate, isValidId, ctrlWrapper(ctrl.getById))
-  .put('/:contactId', isValidId, validation(schemas.addSchema, customMessages.put), ctrlWrapper(ctrl.updateById))
-  .patch('/:contactId/favorite', isValidId, validation(schemas.updateFavoriteSchema, customMessages.patch), ctrlWrapper(ctrl.updateStatusContact))
-  .delete('/:contactId', isValidId, ctrlWrapper(ctrl.removeById))
+  .put('/:contactId', authenticate, isValidId, validation(schemas.addSchema, customMessages.put), ctrlWrapper(ctrl.updateById))
+  .patch('/:contactId/favorite', authenticate, isValidId, validation(schemas.updateFavoriteSchema, customMessages.patch), ctrlWrapper(ctrl.updateStatusContact))
+  .delete('/:contactId', authenticate, isValidId, ctrlWrapper(ctrl.removeById))
 
 module.exports = router;
