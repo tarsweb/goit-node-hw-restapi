@@ -1,5 +1,15 @@
-const updateSubscription = async(req, res) => {
-    console.log("");
-}
+const { User } = require("../../models").user;
 
-module.exports = updateSubscription
+const updateSubscription = async (req, res) => {
+  const { _id } = req.user;
+  const { subscription } = req.body;
+
+  const user = await User.findByIdAndUpdate(
+    _id, { subscription }, { new: true });
+  res.json({
+    email: user.email,
+    subscription: user.subscription,
+  });
+};
+
+module.exports = updateSubscription;
