@@ -4,7 +4,7 @@ const { auth : ctrl} = require('../../controllers')
 
 const { ctrlWrapper } = require('../../helpers')
 const { validation, authenticate } = require('../../middlewares')
-const { schemas, customMessages } = require('../../models/user')
+const { schemas, customMessages } = require('../../models').user
 
 const router = Router();
 
@@ -16,7 +16,5 @@ router
   
   .get("/logout", authenticate, ctrlWrapper(ctrl.logout))
   .get("/current", authenticate, ctrlWrapper(ctrl.current))
-
-  // .post("/subscription", authenticate, )
 
 module.exports = router;

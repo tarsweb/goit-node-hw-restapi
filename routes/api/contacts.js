@@ -4,7 +4,7 @@ const { contacts : ctrl } = require('../../controllers')
 
 const { ctrlWrapper } = require('../../helpers')
 const { validation, isValidId, authenticate } = require('../../middlewares')
-const {schemas, customMessages} = require('../../models/contact')
+const {schemas, customMessages} = require('../../models').contact
 
 const router = Router();
 

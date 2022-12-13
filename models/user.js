@@ -39,11 +39,6 @@ userSchema.methods.setPassword = function (password) {
     this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 }
 
-// userSchema.methods.userExists = function (email) {
-//   const user = User.findOne({email})
-//   return !!user
-// }
-
 userSchema.methods.isValidPassword = function (password) {
   return bcrypt.compareSync(password, this.password)
 }
@@ -55,13 +50,6 @@ userSchema.methods.getToken = function () {
   this.save();
   return token;
 }
-
-// userSchema.methods.verifyToken = function (token) {
-//   const {id} = jwt.verify(token, SECRET_KEY)
-//   const user = mongoose.model("user").findOne({token})
-//   return user
-// }
-
 
 userSchema.post("save", handleValidationErrors)
 
@@ -78,9 +66,13 @@ const loginSchema = Joi.object({
     password: Joi.string().required(),
 }).required()
 
+const updateSubscriptionSchema = Joi.object({
+  subscription: Joi.string().valid(...subscription).required(),
+}).required();
+
 const User = model("user", userSchema);
 
-const schemas = {registerSchema, loginSchema}
+const schemas = {registerSchema, loginSchema, updateSubscriptionSchema}
 
 module.exports = {
     User,
