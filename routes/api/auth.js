@@ -15,6 +15,5 @@ router
   .post("/login", validation(schemas.loginSchema, customMessages.userMessage), ctrlWrapper(ctrl.login))
   
   .get("/logout", authenticate, ctrlWrapper(ctrl.logout))
-  .get("/current", authenticate, ctrlWrapper(ctrl.current))
 
 module.exports = router;
