@@ -30,7 +30,7 @@ describe("test signup controlller", () => {
         expect( body instanceof Object).toBe(true)
         expect.objectContaining({
             user: { ...user },
-          });
+        });
         expect(body.user.subscription).toBe("starter");
     })
 
