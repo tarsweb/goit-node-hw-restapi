@@ -12,6 +12,9 @@ router
   .post("/signup", validation(schemas.registerSchema, customMessages.userMessage), ctrlWrapper(ctrl.register))
   .post("/register", validation(schemas.registerSchema, customMessages.userMessage), ctrlWrapper(ctrl.register))
 
+  .get("/verify/:verificationToken", ctrlWrapper(ctrl.verifyEmail))
+  .post("/verify", validation(schemas.verifyEmailSchema, customMessages.userMessage), ctrlWrapper(ctrl.resendVerifyEmail))
+
   .post("/login", validation(schemas.loginSchema, customMessages.userMessage), ctrlWrapper(ctrl.login))
   
   .get("/logout", authenticate, ctrlWrapper(ctrl.logout))
