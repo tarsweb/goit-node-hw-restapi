@@ -8,10 +8,12 @@ const { requestError } = require('../../helpers');
 const login = async (req, res) => {
   const {email, password} = req.body;
   const user = await User.findOne({email})
-  if (!user) throw requestError(401, "Email not found");
-  
-  if  (!user.isValidPassword(password)) 
+  if (!user) 
+    throw requestError(401, "Email not found");
+  if (!user.isValidPassword(password)) 
     throw requestError(401, "Email or password is wrong");
+  if (!user.verify)
+    throw requestError(400, "Email not verify")
   const token = user.getToken();
   res.json({
     token,
