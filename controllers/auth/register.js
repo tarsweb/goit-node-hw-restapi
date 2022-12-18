@@ -2,7 +2,7 @@ const { User } = require('../../models').user
 const gravatar = require("gravatar");
 const { v4 : uuidv4 } = require("uuid")
 
-const { requestError, sendMail } = require('../../helpers');
+const { requestError, sendMailSendgrid : sendMail } = require('../../helpers');
 
 const register = async (req, res) => {
   const {email, password, subscription} = req.body;
@@ -21,6 +21,7 @@ const register = async (req, res) => {
     subject: "Verify register on",
     html:`<a href="${req.protocol}://${req.headers.host}${req.baseUrl}/verify/${verificationToken}" target="_blank">Click to confign email</a>`,
   };
+
   await sendMail(mail)
   res.status(201).json({
     user: {email : newUser.email, subscription : newUser.subscription}

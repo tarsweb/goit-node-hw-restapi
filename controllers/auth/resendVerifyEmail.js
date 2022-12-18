@@ -1,6 +1,6 @@
 const { User } = require("../../models").user;
 
-const { requestError, sendMail } = require("../../helpers");
+const { requestError, sendMailSendgrid : sendMail } = require("../../helpers");
 
 const resendVerifyEmail = async (req, res) => {
   const { email } = req.body;
@@ -14,8 +14,8 @@ const resendVerifyEmail = async (req, res) => {
     subject: "Verify register on",
     html: `<a href="${req.protocol}://${req.headers.host}${req.baseUrl}/verify/${user.verificationToken}" target="_blank">Click to confign email</a>`,
   };
-  // console.log(mail);
-  await sendEmail(mail);
+  
+  await sendMail(mail);
   res.json({
     message: "Verification email sent",
   });
