@@ -12,7 +12,6 @@ const register = async (req, res) => {
 
   const avatarURL = gravatar.url(email);
   const verificationToken = uuidv4();
-  console.log(verificationToken);
   const newUser = new User({email, subscription, avatarURL, verificationToken});
   newUser.setPassword(password);
   await newUser.save();
@@ -20,10 +19,9 @@ const register = async (req, res) => {
   const mail = {
     to: email,
     subject: "Verify register on",
-    html: `<a href="http://localhost:3000/api/auth/verify/${newUser.verificationToken}" target="_blank">Click to confign email</a>`,
+    html:`<a href="${req.protocol}://${req.headers.host}${req.baseUrl}/verify/${verificationToken}" target="_blank">Click to confign email</a>`,
   };
-  console.log(mail);
-  // sendMail(mail)
+  await sendMail(mail)
   res.status(201).json({
     user: {email : newUser.email, subscription : newUser.subscription}
   })

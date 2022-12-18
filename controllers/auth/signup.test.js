@@ -24,7 +24,7 @@ describe("test signup controlller", () => {
 
     test("singup new User without subscription", async() => {
         const user = { email : "test@mail.com", password: "123456"}
-        const response = await request(app).post("/api/signup").send(user)        
+        const response = await request(app).post("/api/signup").send(user)
         expect(response.status).toBe(201)
         const body = response.body;
         expect( body instanceof Object).toBe(true)

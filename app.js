@@ -1,5 +1,4 @@
 const express = require('express');
-const multer  = require('multer')
 const logger = require('morgan');
 const cors = require('cors');
 

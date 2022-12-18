@@ -12,10 +12,10 @@ const resendVerifyEmail = async (req, res) => {
   const mail = {
     to: email,
     subject: "Verify register on",
-    html: `<a href="http://localhost:3000/api/auth/verify/${user.verificationToken}" target="_blank">Click to confign email</a>`,
+    html: `<a href="${req.protocol}://${req.headers.host}${req.baseUrl}/verify/${user.verificationToken}" target="_blank">Click to confign email</a>`,
   };
-  console.log(mail);
-  //await sendEmail(mail);
+  // console.log(mail);
+  await sendEmail(mail);
   res.json({
     message: "Verification email sent",
   });
