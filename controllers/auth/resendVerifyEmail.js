@@ -1,6 +1,7 @@
 const { User } = require("../../models").user;
 
-const { requestError, sendMailSendgrid : sendMail } = require("../../helpers");
+const { requestError } = require("../../helpers");
+const { sendMailSendgrid : sendMail } = require('../../services')
 
 const resendVerifyEmail = async (req, res) => {
   const { email } = req.body;

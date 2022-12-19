@@ -2,7 +2,8 @@ const { User } = require('../../models').user
 const gravatar = require("gravatar");
 const { v4 : uuidv4 } = require("uuid")
 
-const { requestError, sendMailSendgrid : sendMail } = require('../../helpers');
+const { requestError }  = require('../../helpers');
+const { sendMailSendgrid : sendMail } = require('../../services')
 
 const register = async (req, res) => {
   const {email, password, subscription} = req.body;
